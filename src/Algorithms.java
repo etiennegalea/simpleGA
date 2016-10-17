@@ -35,6 +35,22 @@ public class Algorithms {
     }
 
 
+    // ----------------------------- DAVID E. GOLDBERG ----------------------------
+
+    public static boolean flip(double probability){
+        if(probability == 1)
+            return true;
+        else
+            flip(Math.random());
+        return false;
+    }
+
+
+
+
+    // ----------------------------------------------------------------------------
+
+
     public static float getFitness(Chromosome chrom){
         float fitness = 0;
         int[] goal = toIntArray(Main.GOAL);
@@ -80,9 +96,6 @@ public class Algorithms {
         avg = popTotal / max;
         pop.avg = avg;
 
-        // fittest of population is made elite
-        pop.elite = pop.getFittest();
-
         if(printTestCases)  System.out.println("\ntotal: " + popTotal + "\nmax: " + max + "\navg: " + avg + "\n");
 
 //      ~~ percentage testing ~~
@@ -112,7 +125,9 @@ public class Algorithms {
         // ~~~ s.t. 2 children are generated from the new parents
         if(printTestCases)  System.out.println("~ new population ~");
         int k = 0;
-        for(int i = 0; i < Main.MAXPOP; i++){
+
+        crossover(newPop, pop.elite, pop.elite, 0);
+        for(int i = 2; i < Main.MAXPOP; i++){
             rnd = Math.random();
 //            if(printTestCases)  System.out.println("random float: " + rnd);
             for(int j = 0; j < max; j++) {

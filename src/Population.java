@@ -74,6 +74,9 @@ public class Population {
 //                System.out.println("-- new fittest ["+fittest.fitness+"]: " + fittest.listGenes() + " --");
             }
         }
+        // fittest is set as elite
+        elite = fittest;
+
         return fittest;
     }
 }
